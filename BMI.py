@@ -15,3 +15,6 @@ height= int(input('how tall you are, ')) #typecast
 BMI = weight / (height*height) 
 #operators *,/
 print ('your BMI is', BMI) 
+#selection
+if BMI >25:
+    print('you are overweight')
