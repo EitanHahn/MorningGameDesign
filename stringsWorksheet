@@ -1,0 +1,46 @@
+#Eitan Hahn
+#Strings Assignment
+#strings and arrays
+#len
+import os
+from traceback import print_list
+os.system('cls')
+#Exercise 1A
+message="james"
+print(message[0],end="")
+print(message[int(len(message)/2)],end="")
+print(message[len(message)-1])
+
+#Exercise 1B
+#case 1
+message="JhonDipPeta"
+print(message[4:7])
+#case 2
+message="JaSonAy"
+print(message[2:5])
+
+#Exercise 2
+message1="Ault"
+message2="Kelly"
+print(message1[0:2],end="")
+print(message2[0:5],end="")
+print(message1[2:4])
+
+#Exercise 3
+message1="America"
+message2="Japan"
+print(message1[0],end="")
+print(message2[0],end="")
+print(message1[3],end="")
+print(message2[2],end="")
+print(message1[6],end="")
+print(message2[4])
+
+#Exercise 4
+message="PyNaTive"
+print(message[1],end="")
+print(message[3],end="")
+print(message[5:8],end="")
+print(message[0],end="")
+print(message[2],end="")
+print(message[4])
