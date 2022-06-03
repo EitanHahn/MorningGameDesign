@@ -3,7 +3,6 @@
 #strings and arrays
 #len
 import os
-from traceback import print_list
 os.system('cls')
 #Exercise 1A
 message="james"
@@ -38,9 +37,9 @@ print(message2[4])
 
 #Exercise 4
 message="PyNaTive"
-print(message[1],end="")
-print(message[3],end="")
+print(len(message-7),end="")
+print(len(message-5),end="")
 print(message[5:8],end="")
-print(message[0],end="")
-print(message[2],end="")
-print(message[4])
+print((message-8),end="")
+print(len(message-6),end="")
+print(len(message-3))
