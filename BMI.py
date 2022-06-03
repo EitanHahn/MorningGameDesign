@@ -18,3 +18,5 @@ print ('your BMI is', BMI)
 #selection
 if BMI >25:
     print('you are overweight')
+if BMI <18.5:
+    print('you are underweight')
