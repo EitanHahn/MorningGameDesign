@@ -1,0 +1,165 @@
+#Eitan Hahn
+#Guess a word in a list
+from ctypes.wintypes import WORD
+from operator import truediv
+import random
+import os 
+
+os.system ('cls')
+from time import sleep
+seconds=.5
+thislist3 = ["basketball","hockey","rugby","football","soccer","lacrosse","swimming","golf","volleyball","boxing"]
+
+for i in range(19):
+    print("-",end="")
+print()
+print('| Guess the word! |')
+for i in range(19):
+    print("-",end="")
+print()
+print('|Guess the correct|')
+print('|  animal to win  |')
+
+for i in range(19):
+    print("-",end = "")
+print()
+
+Game=True
+def option1():
+    print('i am here')
+    os.system('cls')
+    check = True
+    cnt=0
+    thislist1 = ["giraffe", "deer","horse", "sheep", "squirrel", "dog","lion","cat","bear","pig" ]
+    theWord=random.choice(thislist1)
+    while check and cnt > 5:
+        yourguess1=input('guess the animal:')
+        if yourguess1 == theWord:
+            print('congrats!! you guessed the correct word!')
+            check = False
+        else:
+            print('sorry. your guess was not correct')
+            again=input('do you want to try again?')
+            if 'y' in again:
+                option1()
+            else: 
+                check = False
+        cnt+=1
+    cnt=0
+def option2():
+    os.system('cls')
+    check = True
+    cnt = 0
+    thislist2 = ["apple","banana","kiwi","strawberry","orange","cherry","blueberry","pear","peach","grape"]
+    theWord=random.choice(thislist2)
+    while check and cnt > 5:
+        yourguess2=input('guess the fruit:')
+        if yourguess2 == theWord:
+            print('great job! you guessed the right word!')
+            check = False
+        else:
+            print ("sorry, you didn't guess the correct word")
+            again=input('do you want to play again?')
+            if 'y' in again:
+                choice=input("What game would you like to play 1, 2, or 3")
+            #preventing error we use try and except
+                try:
+                    choice=int(choice)
+                    if choice>0 and choice <4:
+                        break
+                    else:
+                        print("give me 1,2  3")
+                except:
+                    print("sorry, you have to choose 1, 2, or 3")
+            else:
+                check = False
+            cnt+=1
+    cnt=0
+def option3():
+    os.system('cls')
+    check = True
+    cnt=0
+    thislist3 = ["basketball","hockey","rugby","football","soccer","lacrosse","swimming","golf","volleyball","boxing"]
+    theWord=random.choice(thislist3)
+    while check and cnt > 5:
+        yourguess3=input('guess the sport:')
+        if yourguess3==theWord:
+            print('great job! you guessed the right word!')
+            check = False
+        else:
+            print ("sorry, you didn't guess the correct word")
+            again=input('do you want to play again?')
+            if 'y' in again:
+                choice=input("What game would you like to play 1, 2, or 3")
+            #preventing error we use try and except
+                try:
+                    choice=int(choice)
+                    if choice>0 and choice <4:
+                        break
+                    else:
+                        print("give me 1,2  3")
+                except:
+                    print("sorry, you have to choose 1, 2, or 3")
+            else:
+                check = False
+            cnt+=1
+        cnt=0
+
+
+
+
+
+
+while Game:
+    for i in range(54):
+        print("*",end="")
+    
+    print()
+    print('Instructions:')
+    print('1. You will answer questions, and decide which list you want to guess from ')
+    print('2. A random word will be selected from the list that you pick') 
+    print('3. Try to guess the word in the list that you chose')
+    for i in range(54):
+        print("*",end="")
+    print()
+    print('The 3 Lists:')
+    for i in range(13):
+        print("-",end="")
+    print()
+    print('1. Animals')
+    print('2. Fruits')
+    print('3. Sports')
+    for i in range(13):
+        print("-",end="")
+    print()
+    name=input("What is your name? ")
+    print(name, end=", ")
+    answer=input("Would you like to play? ")
+    if 'n' in answer:
+        break
+    if 'y' in answer:
+        while True:
+            choice=input("What game would you like to play 1, 2, or 3")
+            #preventing error we use try and except
+            try:
+                choice=int(choice)
+                if choice>0 and choice <4:
+                    break
+                else:
+                    print("give me 1,2  3")
+            except:
+                print("sorry, you have to choose 1, 2, or 3")
+
+
+        os.system('cls')
+        if choice==1:
+            option1()
+        if choice==2:
+            option2()
+        if choice==3:
+            option3()
+      
+
+
+
+   

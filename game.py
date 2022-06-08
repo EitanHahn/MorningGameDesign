@@ -83,11 +83,12 @@ while Game:
             print("sorry")
     #call function to select the word from the right list
     os.system('cls')
+    theWord=selectWord(choice)
     check=True
     while check and cnt <5:
         guess=input("plese put your guess here: ")
         print()
-        if guess == theword:
+        if guess == theWord:
             print("Congrats, You got it")
         
             check=False
