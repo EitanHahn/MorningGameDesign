@@ -9,6 +9,8 @@ os.system ('cls')
 from time import sleep
 seconds=.5
 thislist3 = ["basketball","hockey","rugby","football","soccer","lacrosse","swimming","golf","volleyball","boxing"]
+thislist2 = ["apple","banana","kiwi","strawberry","orange","cherry","blueberry","pear","peach","grape"]
+thislist1 = ["giraffe", "deer","horse", "sheep", "squirrel", "dog","lion","cat","bear","pig" ]
 
 for i in range(19):
     print("-",end="")
@@ -24,12 +26,16 @@ for i in range(19):
     print("-",end = "")
 print()
 
+
+
 Game=True
 def option1():
+    global cnt
     print('i am here')
     os.system('cls')
     check = True
     cnt=0
+
     thislist1 = ["giraffe", "deer","horse", "sheep", "squirrel", "dog","lion","cat","bear","pig" ]
     theWord=random.choice(thislist1)
     while check and cnt > 5:
@@ -47,12 +53,13 @@ def option1():
         cnt+=1
     cnt=0
 def option2():
+    global cnt
     os.system('cls')
     check = True
     cnt = 0
-    thislist2 = ["apple","banana","kiwi","strawberry","orange","cherry","blueberry","pear","peach","grape"]
-    theWord=random.choice(thislist2)
-    while check and cnt > 5:
+3    theWord=random.choice(thislist2)
+
+while check and cnt > 5:
         yourguess2=input('guess the fruit:')
         if yourguess2 == theWord:
             print('great job! you guessed the right word!')
@@ -74,8 +81,9 @@ def option2():
             else:
                 check = False
             cnt+=1
-    cnt=0
+        cnt=0
 def option3():
+    global cnt
     os.system('cls')
     check = True
     cnt=0
@@ -151,14 +159,31 @@ while Game:
                 print("sorry, you have to choose 1, 2, or 3")
 
 
-        os.system('cls')
-        if choice==1:
-            option1()
-        if choice==2:
-            option2()
-        if choice==3:
-            option3()
-      
+    while check and cnt > 5:
+        guess=input('put your guess here')
+        print()
+        if guess==theWord:
+            print('congratulations! you guessed the correct word. Great job!')
+            check=False
+        else:
+            print('sorry, you did not guess the correct word')
+            print()
+            answer=input('do you want to play again?')
+            if 'n' in answer 
+                game=False
+                print('thank you for playing my game')
+                cnt+=1
+        cnt=0
+
+def selectWord(choice):
+    global theWord
+    if choice==1:
+        theWord=random.choice(thislist1)
+    if choice==2:
+        theWord=random.choice(thislist2)
+    if choice==3:
+        theWord=random.choice(thislist3)
+    return theWord
 
 
 
