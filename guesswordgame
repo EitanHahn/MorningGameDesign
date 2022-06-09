@@ -169,7 +169,7 @@ while Game:
             print('sorry, you did not guess the correct word')
             print()
             answer=input('do you want to play again?')
-            if 'n' in answer 
+            if 'n' in answer:
                 game=False
                 print('thank you for playing my game')
                 cnt+=1
