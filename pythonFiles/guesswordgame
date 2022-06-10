@@ -57,7 +57,7 @@ def option2():
     os.system('cls')
     check = True
     cnt = 0
-theWord=random.choice(thislist2)
+    theWord=random.choice(thislist2)
 
 while check and cnt > 5:
         yourguess2=input('guess the fruit:')

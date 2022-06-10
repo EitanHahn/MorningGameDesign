@@ -55,9 +55,8 @@ while NumGame:
                     print(line)
             if choice==6:
                 print('thank you for playing my game')
-                exit=input('press enter to exit the game')
-            return theNum
-        
+                exitgame=input('press enter to exit the game')
+            
     while Game:
         check=True
         while check and cnt < 20:
@@ -73,7 +72,7 @@ while NumGame:
                 cnt+=1
                 if cnt==20:
                     print('sorry, you ran out of guesses')
-                score=200-40*cnt
+                score=500-40*cnt
                 print(name,'your score is'+str(score))
                 input=('press enter to go back to menu')
                 cnt+=1
