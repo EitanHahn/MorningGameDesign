@@ -92,8 +92,11 @@ while Game:
         cnt+=1   # cnt= cnt + 1
         if cnt==5:
             print("sorry")
-      
-
+        score=200-40*cnt
+        if score > high:
+            high=score
+        print(name+", your score is "+str(score))
+        input("press enter")
     os.system('cls')
     print("<><><><><><><><><><><><>")
     answer=input("Do yo want to play again? ")
@@ -101,3 +104,10 @@ while Game:
         Game=False
         print("Thank you for playing my game" )
 cnt=0
+  
+  
+  
+  
+  
+  
+  
