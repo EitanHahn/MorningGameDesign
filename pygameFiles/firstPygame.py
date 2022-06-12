@@ -7,6 +7,8 @@ pygame.init() #initialize the pygame package
 os.system('cls')
 WIDTH=700 #like constant
 HEIGHT=700
+colors={"white":(255,255,255),"pink":(255,0,255),"limeGreen":(153,255,51)}
+Color=colors.get("white")
 #create display windowwith any name
 screen=pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("my first game") #changes the title of the window

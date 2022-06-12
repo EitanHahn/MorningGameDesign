@@ -5,7 +5,8 @@ import os
 os.system('cls')
 import random
 NumGame=True
-
+high=0
+score=0
 cnt=0
 name=input('What is your name? ')
 print(name,end="")
@@ -59,6 +60,7 @@ while NumGame:
             
     while Game:
         check=True
+        cnt=0
         while check and cnt < 20:
             try:
                 message="guess a number between "+ level
@@ -72,10 +74,14 @@ while NumGame:
                 cnt+=1
                 if cnt==20:
                     print('sorry, you ran out of guesses')
-                score=500-40*cnt
-                print(name,'your score is'+str(score))
-                input=('press enter to go back to menu')
-                cnt+=1
+            cnt+=1
+            
+            score=500-40*cnt
+            print(name,'your score is'+str(score))
+            input=('press enter to go back to menu')
+            if score > high:
+                score=high
+                
 
 
 
