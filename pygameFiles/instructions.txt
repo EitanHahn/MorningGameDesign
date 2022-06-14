@@ -1,6 +1,13 @@
+Game 1:
 In this game, we need to use:
-arrow keys to move the square
-W, A, S, D to move the circle
+- arrow keys to move the square
+- W, A, S, D to move the circle
 
+Game 2:
+In this game, we need to use:
+- arrow keys to move the character
+- W, A, S, D to move the inscribed square 
+NOTE: If the character collides with the inscribed square:
+the inscribed square will get larger
 
 Are you ready to play?
