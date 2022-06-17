@@ -615,6 +615,7 @@ player=1
 markers=[]
 lineWidth=10
 Game=True
+winner=0
 MxMy=(0,0)
 print(markers)  
 cirClr=colors.get("blue")
