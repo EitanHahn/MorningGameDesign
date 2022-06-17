@@ -24,6 +24,7 @@ settingsList=["Background color","Screen size","Sound ON/OFF"]
 screen=pygame.display.set_mode((WIDTH,HEIGHT),pygame.RESIZABLE) 
 pygame.display.set_caption("My First Game")  #change the title of my window
 
+clock=pygame.time.Clock()
 #images
 bg=pygame.image.load('pygameFiles\imagesfolder\\bgSmaller.jpg')
 char = pygame.image.load('PygameFiles\imagesfolder\PixelArtTutorial.png')
@@ -59,7 +60,7 @@ insSquare=pygame.Rect(xig,yig,ibox,ibox)
 squareClr=colors.get("pink")
 #keep running create a lp
 circleClr=colors.get("blue")
-backgrnd=colors.get("limeGreen")
+backgrnd=colors.get("white")
 run = True
 Game = False
 xd=WIDTH//2
@@ -167,7 +168,7 @@ def settings():
                 mx = mousePos[0]
                 my = mousePos[1]
                 if Button_BG.collidepoint((mx, my)):
-                    print('yes')
+                    changeBG()
         for item in settingsList:
             text=MENU_FONT.render(item, 1, colors.get('blue'))
             screen.blit(text, (xd, ySettings))
@@ -346,10 +347,12 @@ def Game2():
         pygame.draw.circle(screen, circleClr, (cx,cy), rad)
         pygame.draw.rect(screen, squareClr, insSquare)
         pygame.display.update()
+        clock.tick(150)
     while True:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 Mainmenu()           
+                
 def scoreboard():
     Title = TITLE_FONT.render("Scoreboard", 1, colors.get("blue"))
 

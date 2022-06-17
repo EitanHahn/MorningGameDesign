@@ -1,4 +1,4 @@
-#MAria   
+# Eitan Hahn   
 # TICTACTOE  
 # zero_Array() 
 # draw_grid() 
@@ -10,6 +10,8 @@ import os, random, time, pygame, math, datetime,sys
 os.system('cls')
 
 pygame.init()
+
+clock=pygame.time.Clock()
 
 TITLE_FONT = pygame.font.SysFont('comicsans', 40)
 MENU_FONT = pygame.font.SysFont('comicsans', 20)
@@ -782,4 +784,4 @@ while Game:
             
             
     pygame.display.update() 
-    pygame.time.delay(100)
+    clock.tick(60)
