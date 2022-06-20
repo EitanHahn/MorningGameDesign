@@ -3,7 +3,7 @@
 #get user name in pygame
 
 import pygame, sys, os
-
+clock=pygame.time.Clock()
 pygame.init()
 os.system('cls')
 colors={"white":(255,255,255),"pink":(255,0,255),"blue":(0,0,255),"limeGreen":(153,255,51),"gold":(255,215,0)}
@@ -37,7 +37,7 @@ while run:
             print()
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_RETURN:  
-                print("name is in")
+                print("your name is " + user_name)
                 #run main menu
                 pygame.quit()
                 sys.exit()
@@ -52,3 +52,4 @@ while run:
         screen.blit(text_surface,(input_rect.x+5,input_rect.y+5))
 
         pygame.display.flip()
+        clock.tick(60)

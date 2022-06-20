@@ -2,7 +2,7 @@
 #6/13/2022
 #We are learning pygame basic functins, 
 # creating the menu and instructions
-import pygame, time,os,random, math, datetime
+import pygame, time,os,random, math, datetime,sys
 pygame.init()#initialize the pygame package
 
 # print(pygame.font.get_fonts())
@@ -64,10 +64,48 @@ backgrnd=colors.get("white")
 run = True
 Game = False
 xd=WIDTH//2
+def name():
+    xd=WIDTH//3
+    screen.fill(backgrnd)
+    run=True #to run the while loop
+    user_name=''
+    nameClr=(0,105,105) #for the text of the name
+    boxClr= (200,200,200) #for the text box
+    title=TITLE_FONT.render("Enter Name",1,boxClr)
+    screen.blit(title,(200,50)) 
+    input_rect = pygame.Rect((WIDTH//3, HEIGHT//3), (140, 40))
+
+    #make box
+    while run:
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                #Menu(mainTitle,messageMenu)
+                Mainmenu()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print()
+            if event.type == pygame.KEYDOWN:
+                if event.key==pygame.K_RETURN:  
+                    print("your name is " + user_name)
+                    #run main menu
+                    Mainmenu()
+                if event.key==pygame.K_BACKSPACE:
+                    user_name=user_name[:-1]
+                else:
+                    user_name+=event.unicode
+            pygame.draw.rect(screen, boxClr, input_rect)
+            
+            text_surface = MENU_FONT.render(user_name, True, nameClr)
+            #use your x,y
+            screen.blit(text_surface,(input_rect.x+5,input_rect.y+5))
+
+            pygame.display.flip()
+            clock.tick(60)
+
 def Mainmenu():
     Title = TITLE_FONT.render("Circle eats Square", 1, colors.get("blue"))
     screen.fill(colors.get("white"))
-    xd = WIDTH//2 - (Title.get_width()//2)
+    xd = WIDTH//2.5 
     screen.blit(Title, (xd, 50))
     xd=WIDTH//2
     yMenu=155
@@ -383,4 +421,6 @@ def scoreboard():
             if event.type==pygame.QUIT:
                 Mainmenu()
 
+name()
 Mainmenu()
+
