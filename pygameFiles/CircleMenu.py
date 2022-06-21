@@ -63,7 +63,7 @@ circleClr=colors.get("blue")
 backgrnd=colors.get("white")
 run = True
 Game = False
-xd=WIDTH//2
+xd=WIDTH//5
 def name():
     xd=WIDTH//3
     screen.fill(backgrnd)
@@ -103,9 +103,10 @@ def name():
             clock.tick(60)
 
 def Mainmenu():
+    global xd
     Title = TITLE_FONT.render("Circle eats Square", 1, colors.get("blue"))
     screen.fill(colors.get("white"))
-    xd = WIDTH//2.5 
+    xd = WIDTH//3
     screen.blit(Title, (xd, 50))
     xd=WIDTH//2
     yMenu=155
