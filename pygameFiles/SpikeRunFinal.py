@@ -50,14 +50,11 @@ def name():
             if event.type==pygame.QUIT:
                 #Menu(mainTitle,messageMenu)
                 Mainmenu()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                print()
             if event.type == pygame.KEYDOWN:
-                if event.key==pygame.K_RETURN:  
-                    print("your name is " + user_name)
+                if event.key==pygame.K_RETURN: #if enter is pressed
                     #run main menu
                     Mainmenu()
-                if event.key==pygame.K_BACKSPACE:
+                if event.key==pygame.K_BACKSPACE: #deleting characters
                     user_name=user_name[:-1]
                 else:
                     user_name+=event.unicode
@@ -281,9 +278,8 @@ def Game1():
     #main loop
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: #if press on X, the game quits and exits
-                pygame.quit()
-                sys.exit()
+            if event.type == pygame.QUIT: #if press on X, run menu
+                Mainmenu()
             
         current_time=pygame.time.get_ticks()
 
@@ -471,9 +467,8 @@ def Game2():
     #main loop
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: #if press on X, the game quits and exits
-                pygame.quit()
-                sys.exit()
+            if event.type == pygame.QUIT: #if press on X, run menu
+                Mainmenu()
             
         current_time=pygame.time.get_ticks()
 
@@ -546,33 +541,24 @@ def Game2():
             coin1.fill((0, 0, 0, 0)) #RGBA sequence
             coin1_rect=pygame.Rect(0,0,40,40)
             score+=1
-            print(score)
+            
         if coin2_rect.colliderect(hitbox):
             coin2 = pygame.Surface((24, 24), flags=pygame.SRCALPHA)
             coin2.fill((0, 0, 0, 0)) #RGBA sequence
             coin2_rect=pygame.Rect(0,0,40,40)
             score+=1
-            print(score)
+            
         if coin3_rect.colliderect(hitbox):
             coin3 = pygame.Surface((24, 24), flags=pygame.SRCALPHA)
             coin3.fill((0, 0, 0, 0)) #RGBA sequence
             coin3_rect=pygame.Rect(0,0,40,40)
             score+=1
-            print(score)
+           
         if coin4_rect.colliderect(hitbox):
             coin4 = pygame.Surface((24, 24), flags=pygame.SRCALPHA)
             coin4.fill((0, 0, 0, 0)) #RGBA sequence
             coin4_rect=pygame.Rect(0,0,40,40)
             score+=1
-            print(score)
-        
-            
-
-
-#how to only change the height when the character collides with the TOP of the platform
-#how to make it so that the user can go off the platform and lower then the height
-
-
 
         redrawwindow()
         if current_time - button_press_time > 20000: #if the time reaches 20 seconds, run the endgame function
