@@ -7,23 +7,23 @@ pygame.init()#initialize the pygame package
 
 # print(pygame.font.get_fonts())
 # pygame.time.delay(10000)
-TITLE_FONT = pygame.font.SysFont('comicsans', 40)
-MENU_FONT = pygame.font.SysFont('comicsans', 20)
+
 
 os.system('cls')
-WIDTH=700 #like constant
-HEIGHT=700
+WIDTH=900 #like constant
+HEIGHT=600
 TITLE_FONT = pygame.font.SysFont('comicsans', WIDTH//20)
 MENU_FONT = pygame.font.SysFont('comicsans', WIDTH//25)
-INSTRUC_FONT = pygame.font.SysFont('comicsans', WIDTH//35)
+INSTRUC_FONT = pygame.font.SysFont('comicsans', WIDTH//40)
 colors={"white":(255,255,255),"pink":(255,0,255),"blue":(0,0,255),"limeGreen":(153,255,51),"gold":(255,215,0)}
 clr=colors.get("limeGreen")
+menuColor = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
 
-message=["Instructions", "Settings", "Game 1", "Game 2", "Scoreboard", "Exit"]
-settingsList=["Background color","Screen size","Sound ON/OFF"]
+message=["Instructions", "Settings", "Level 1", "Level 2", "Scoreboard", "Exit"]
+settingsList=["Random Background color","Screen Size UP 100","Screen Size DOWN 100"]
 #create dispay wind with any name y like
-screen=pygame.display.set_mode((WIDTH,HEIGHT),pygame.RESIZABLE) 
-pygame.display.set_caption("My First Game")  #change the title of my window
+screen=pygame.display.set_mode((WIDTH,HEIGHT)) 
+pygame.display.set_caption("Spike Run")  #change the title of my window
 
 
 clock=pygame.time.Clock()
@@ -31,10 +31,50 @@ clock=pygame.time.Clock()
 bg=pygame.image.load('pygameFiles\imagesfolder\\bgSmaller.jpg')
 char = pygame.image.load('PygameFiles\imagesfolder\PixelArtTutorial.png')
 char = pygame.transform.scale(char, (50, 50))
-# screen.blit(bg, (0,0))
-# pygame.display.update()
-# pygame.time.delay(5000)
-
+#loading the images into the game
+walkRight = [pygame.image.load('pygameFiles\imagesfolder\R1.png'), pygame.image.load('pygameFiles\imagesfolder\R2.png'), pygame.image.load('pygameFiles\imagesfolder\R3.png'), pygame.image.load('pygameFiles\imagesfolder\R4.png'), pygame.image.load('pygameFiles\imagesfolder\R5.png'), pygame.image.load('pygameFiles\imagesfolder\R6.png'), pygame.image.load('pygameFiles\imagesfolder\R7.png'), pygame.image.load('pygameFiles\imagesfolder\R8.png'), pygame.image.load('pygameFiles\imagesfolder\R9.png')]
+walkLeft = [pygame.image.load('pygameFiles\imagesfolder\L1.png'), pygame.image.load('pygameFiles\imagesfolder\L2.png'), pygame.image.load('pygameFiles\imagesfolder\L3.png'), pygame.image.load('pygameFiles\imagesfolder\L4.png'), pygame.image.load('pygameFiles\imagesfolder\L5.png'), pygame.image.load('pygameFiles\imagesfolder\L6.png'), pygame.image.load('pygameFiles\imagesfolder\L7.png'), pygame.image.load('pygameFiles\imagesfolder\L8.png'), pygame.image.load('pygameFiles\imagesfolder\L9.png')]
+char = pygame.image.load('pygameFiles\imagesfolder\standing.png')
+bg=pygame.image.load('pygameFiles\imagesfolder\goodbg.jpg')
+bg=pygame.transform.scale(bg,(WIDTH,HEIGHT)) #resizing bg
+platform1=pygame.image.load("pygameFiles\imagesfolder\\rightspikes.png")
+platform1=pygame.transform.scale(platform1,(100,60))
+coin1=pygame.image.load('pygameFiles\imagesfolder\coinwobg.png')
+coin1=pygame.transform.scale(coin1,(40,40))
+coin2=pygame.image.load('pygameFiles\imagesfolder\coinwobg.png')
+coin2=pygame.transform.scale(coin2,(40,40))
+coin3=pygame.image.load('pygameFiles\imagesfolder\coinwobg.png')
+coin3=pygame.transform.scale(coin3,(40,40))
+coin4=pygame.image.load('pygameFiles\imagesfolder\coinwobg.png')
+coin4=pygame.transform.scale(coin4,(40,40))
+treasure=pygame.image.load('pygameFiles\imagesfolder\\treasurewobg.png')
+treasure=pygame.transform.scale(treasure,(100,80))
+score=0
+#variables
+x=0
+y=395
+width=64
+vel=10
+isJump=False
+jumpCount=10
+#variables to keep track of image
+left = False
+right = False
+walkCount = 0
+#timer variables
+current_time=0
+button_press_time=0
+platform1_rect=pygame.Rect(100,400, 100, 50)
+platform2_rect=pygame.Rect(250,200, 100, 50)
+platform3_rect=pygame.Rect(475,150, 100, 50)
+platform4_rect=pygame.Rect(475,400, 100, 50)
+platform5_rect=pygame.Rect(660,330, 100, 50)
+hitbox=pygame.Rect(x+5,y+10,40,40) #figure out dimension of character
+coin1_rect=pygame.Rect(130,250,40,40)
+coin2_rect=pygame.Rect(270,390,40,40)
+coin3_rect=pygame.Rect(505,285,40,40)
+coin4_rect=pygame.Rect(690,200,40,40)
+treasure_rect=pygame.Rect(795,375,100,80)
 
 #square Var
 hb=50
@@ -67,15 +107,14 @@ run = True
 Game = False
 xd=WIDTH//2
 def name():
-    xd=WIDTH//3
-    screen.fill(backgrnd)
+    screen.fill(menuColor)
     run=True #to run the while loop
     user_name=''
     nameClr=(0,105,105) #for the text of the name
     boxClr= (200,200,200) #for the text box
     title=TITLE_FONT.render("Enter Name",1,boxClr)
-    screen.blit(title,(200,50)) 
-    input_rect = pygame.Rect((WIDTH//3, HEIGHT//3), (140, 40))
+    screen.blit(title,(WIDTH//2.75,HEIGHT//3.2)) 
+    input_rect = pygame.Rect((WIDTH//2.4, HEIGHT//2.2), (140, 40))
 
     #make box
     while run:
@@ -99,25 +138,25 @@ def name():
             
             text_surface = MENU_FONT.render(user_name, True, nameClr)
             #use your x,y
-            screen.blit(text_surface,(input_rect.x+5,input_rect.y+5))
+            screen.blit(text_surface,(input_rect.x,input_rect.y))
 
             pygame.display.flip()
             clock.tick(60)
 
 def Mainmenu():
     global xd, WIDTH, HEIGHT
-    xd = WIDTH//2.75
-    Title = TITLE_FONT.render("Circle eats Square", 1, colors.get("blue"))
-    screen.fill(backgrnd)
-    screen.blit(Title, (WIDTH//3.5, 50))
+    xd = WIDTH//2.5
+    Title = TITLE_FONT.render("Spike Run", 1, colors.get("blue"))
+    screen.fill(menuColor)
+    screen.blit(Title, (WIDTH//2.5, 50))
     yMenu=155
     ByeBye = TITLE_FONT.render("ByeBye", 1, colors.get("blue"))
-    Button_Instructions= pygame.Rect((xd, 150), (WIDTH//4, 40))
-    Button_Settings = pygame.Rect((xd, 200), (WIDTH//4, 40))
-    Button_Game1 = pygame.Rect((xd, 250), (WIDTH//4, 40))
-    Button_Game2 = pygame.Rect((xd, 300), (WIDTH//4, 40))
-    Button_Scoreboard = pygame.Rect((xd, 350), (WIDTH//4, 40))
-    Button_Exit = pygame.Rect((xd, 400), (WIDTH//4, 40))
+    Button_Instructions= pygame.Rect((xd, 160), (WIDTH//4, 40))
+    Button_Settings = pygame.Rect((xd, 210 ), (WIDTH//4, 40))
+    Button_Game1 = pygame.Rect((xd, 260), (WIDTH//4, 40))
+    Button_Game2 = pygame.Rect((xd, 310), (WIDTH//4, 40))
+    Button_Scoreboard = pygame.Rect((xd, 360), (WIDTH//4, 40))
+    Button_Exit = pygame.Rect((xd, 410), (WIDTH//4, 40))
     pygame.draw.rect(screen, colors.get("pink"), Button_Instructions)
     pygame.draw.rect(screen, colors.get("limeGreen"), Button_Settings)
     pygame.draw.rect(screen, colors.get("gold"), Button_Game1)
@@ -147,15 +186,15 @@ def Mainmenu():
                     scoreboard()
                 if Button_Exit.collidepoint((mx,my)):
                     run=False
-                    event.type==pygame.quit()
+                    pygame.quit()
+                    sys.exit()
 
-                
 def Instructions():
     #rendering text objects
     Title = TITLE_FONT.render("Instructions", 1, colors.get("blue"))
 
     #fills screen with white
-    screen.fill(backgrnd)
+    screen.fill(menuColor)
 
     #creating button options
     
@@ -165,13 +204,13 @@ def Instructions():
     content = myFile.readlines()
 
     #var to controll change of line
-    yinstructions = 150
+    yinstructions = 110
     for line in content:
-        Instruc = MENU_FONT.render(line[0:-1], 1, colors.get("blue"))
+        Instruc = INSTRUC_FONT.render(line[0:-1], 1, colors.get("blue"))
         screen.blit(Instruc, (40, yinstructions))
         pygame.display.update()
         pygame.time.delay(50)
-        yinstructions += 40
+        yinstructions += 30
 
     myFile.close()
 
@@ -186,22 +225,33 @@ def Instructions():
             if event.type==pygame.QUIT:
                 Mainmenu()         
 def settings():
-    global mx, my
-    xd=WIDTH//3
+    global menuColor, WIDTH, HEIGHT, screen
+    xd=WIDTH//3.5
     Title = TITLE_FONT.render("Settings", 1, colors.get("blue"))
-    #fills screen with white
-    screen.fill(backgrnd)
+    
+    #fills screen with the menu color
+    screen.fill(menuColor)
     ySettings=215
     mx=0
     my=0
     #creating button options
-    Button_BG = pygame.Rect(xd, 200, WIDTH//3, 50)
-    Button_Screen = pygame.Rect(xd, 300, WIDTH//3, 50)
-    Button_Sound = pygame.Rect(xd, 400, WIDTH//3, 50)
+    Button_BG = pygame.Rect(xd, 210, WIDTH//2, 50)
+    Button_ScreenUp = pygame.Rect(xd, 310, WIDTH//2, 50)
+    Button_ScreenDown = pygame.Rect(xd, 410, WIDTH//2, 50)
+
     #drawing buttons
     pygame.draw.rect(screen, colors.get("gold"), Button_BG)
-    pygame.draw.rect(screen, colors.get("limeGreen"), Button_Screen)
-    pygame.draw.rect(screen, colors.get("pink"), Button_Sound)
+    pygame.draw.rect(screen, colors.get("limeGreen"), Button_ScreenUp)
+    pygame.draw.rect(screen, colors.get("pink"), Button_ScreenDown)
+    for item in settingsList:
+        text=MENU_FONT.render(item, 1, colors.get('blue'))
+        screen.blit(text, (xd, ySettings))
+        pygame.display.update()
+        ySettings += 100
+    #renderig fonts to the screen
+    screen.blit(Title, (WIDTH//2.5, 100))
+
+    pygame.display.update()
     while True:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
@@ -211,55 +261,21 @@ def settings():
                 mx = mousePos[0]
                 my = mousePos[1]
                 if Button_BG.collidepoint((mx, my)):
-                    pygame.time.delay(250)
-                    changeBG()
-        for item in settingsList:
-            text=MENU_FONT.render(item, 1, colors.get('blue'))
-            screen.blit(text, (xd, ySettings))
-            pygame.display.update()
-            ySettings += 100
-        #renderig fonts to the screen
-        xd = WIDTH//2 - (Title.get_width()//2)
-        screen.blit(Title, (xd, 100))
-        pygame.display.update()
-       
+                    menuColor = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
+                    pygame.display.update()
+                    Mainmenu()
+                if Button_ScreenUp.collidepoint((mx,my)) and WIDTH <1000 and HEIGHT<1000:
+                    WIDTH +=100
+                    HEIGHT +=100
+                    screen=pygame.display.set_mode((WIDTH, HEIGHT))
+                    Mainmenu()
+                if Button_ScreenDown.collidepoint((mx,my)) and WIDTH>600 and HEIGHT>600:
+                    WIDTH -=100
+                    HEIGHT -=100
+                    screen=pygame.display.set_mode((WIDTH, HEIGHT))
+                    Mainmenu()
 
-def changeBG():
-    #changing background colors
-    global screen, event, colors, backgrnd
-    screen.fill(backgrnd)
-    text = MENU_FONT.render("Pick Background Color", 1, colors.get("blue"))
-    pinktext= INSTRUC_FONT.render("Pink", 1, colors.get("blue"))
-    limeGreentext=INSTRUC_FONT.render("Lime Green", 1, colors.get("blue"))
-    goldtext=INSTRUC_FONT.render("Gold", 1, colors.get("blue"))
-    screen.blit(text,(xd, 50))
-    screen.blit(pinktext,(xd, 200))
-    screen.blit(limeGreentext,(xd, 300))
-    screen.blit(goldtext,(xd, 400))
-    Button_pink = pygame.Rect(xd, 200, WIDTH//3, 50)
-    Button_limeGreen = pygame.Rect(xd, 300 , WIDTH//3, 50)
-    Button_gold = pygame.Rect(xd, 400, WIDTH//3, 50)
-    pygame.draw.rect(screen, colors.get("pink"), Button_pink)
-    pygame.draw.rect(screen, colors.get("limeGreen"), Button_limeGreen)
-    
-    pygame.draw.rect(screen, colors.get("gold"), Button_gold)
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mousePos = pygame.mouse.get_pos()
-                mx = mousePos[0]
-                my = mousePos[1]
-                if Button_pink.collidepoint((mx, my)):
-                    backgrnd=(colors.get("pink"))
-                    pygame.display.update()
-                if Button_limeGreen.collidepoint((mx, my)):
-                    backgrnd=(colors.get("limeGreen"))
-                    pygame.display.update()
-                if Button_gold.collidepoint((mx, my)):
-                    backgrnd=(colors.get("gold"))
-                    pygame.display.update()
-                if event.type==pygame.QUIT:
-                    settings()
+   
 
     
 def Game1():
@@ -1126,12 +1142,12 @@ def Game2():
         clock.tick(60)
                 
 def scoreboard():
-    Title = TITLE_FONT.render("Scoreboard", 1, colors.get("blue"))
+    Title = TITLE_FONT.render("Scoreboard", 1, colors.get("blue")) #title of screen
 
     #fills screen with white
-    screen.fill(backgrnd)
+    screen.fill(menuColor)
 
-    myFile = open("PygameFiles\scoreboard.txt", "r")
+    myFile = open("PygameFiles\scoreboard.txt", "r") #opening and reading the scoreboard file
     content = myFile.readlines()
 
     #var to controll change of line

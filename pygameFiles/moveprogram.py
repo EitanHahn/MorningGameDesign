@@ -36,6 +36,9 @@ wb=50
 xb=100
 yb=300
 
+
+mountainSquare = pygame.Rect(250, 320, 180, 250)
+
 charx=350
 chary=100
 
@@ -103,7 +106,22 @@ while run:
         xig = cx-(ibox/2)
         yig = cy-(ibox/2)
         insSquare=pygame.Rect(xig, yig, ibox, ibox)
-       
+     #mountain collide square
+    if square.colliderect(mountainSquare):
+        square.x = 10
+        square.y = 10
+        charx = 10
+        chary = 10
+    
+    #mountain collide circle
+    if insSquare.colliderect(mountainSquare):
+        cx = rad + 10
+        cy = rad + 10
+        ibox = rad*math.sqrt(2)
+        xig = cx-(ibox/2)
+        yig = cy-(ibox/2)
+        insSquare=pygame.Rect(xig,yig,ibox,ibox)
+
     #rect(surface, color, rect)
     pygame.draw.rect(screen, squareColor, square)
     #circle(surface, color, center, radius)

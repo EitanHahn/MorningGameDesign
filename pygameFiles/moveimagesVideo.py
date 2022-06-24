@@ -9,40 +9,39 @@ left = False
 right = False
 walkCount = 0
 
-win=pygame.display.set_mode((500,480))
+screen=pygame.display.set_mode((500,480))
 pygame.display.set_caption('Moving Animations')
 
 #loading the images into the game
-walkRight = [pygame.image.load('R1.png'), pygame.image.load('R2.png'), pygame.image.load('R3.png'), pygame.image.load('R4.png'), pygame.image.load('R5.png'), pygame.image.load('R6.png'), pygame.image.load('R7.png'), pygame.image.load('R8.png'), pygame.image.load('R9.png')]
-walkLeft = [pygame.image.load('L1.png'), pygame.image.load('L2.png'), pygame.image.load('L3.png'), pygame.image.load('L4.png'), pygame.image.load('L5.png'), pygame.image.load('L6.png'), pygame.image.load('L7.png'), pygame.image.load('L8.png'), pygame.image.load('L9.png')]
-bg = pygame.image.load('bg.jpg')
-char = pygame.image.load('standing.png')
-
+walkRight = [pygame.image.load('pygameFiles\imagesfolder\R1.png'), pygame.image.load('pygameFiles\imagesfolder\R2.png'), pygame.image.load('pygameFiles\imagesfolder\R3.png'), pygame.image.load('pygameFiles\imagesfolder\R4.png'), pygame.image.load('pygameFiles\imagesfolder\R5.png'), pygame.image.load('pygameFiles\imagesfolder\R6.png'), pygame.image.load('pygameFiles\imagesfolder\R7.png'), pygame.image.load('pygameFiles\imagesfolder\R8.png'), pygame.image.load('pygameFiles\imagesfolder\R9.png')]
+walkLeft = [pygame.image.load('pygameFiles\imagesfolder\L1.png'), pygame.image.load('pygameFiles\imagesfolder\L2.png'), pygame.image.load('pygameFiles\imagesfolder\L3.png'), pygame.image.load('pygameFiles\imagesfolder\L4.png'), pygame.image.load('pygameFiles\imagesfolder\L5.png'), pygame.image.load('pygameFiles\imagesfolder\L6.png'), pygame.image.load('pygameFiles\imagesfolder\L7.png'), pygame.image.load('pygameFiles\imagesfolder\L8.png'), pygame.image.load('pygameFiles\imagesfolder\L9.png')]
+char = pygame.image.load('pygameFiles\imagesfolder\standing.png')
+bg=pygame.image.load('pygameFiles\imagesfolder\\forest-hill-game-background-nature-landscape-different-platforms-separated-layers-games-82120706.jpg')
 #variables
 x=50
 y=400
 width=40
 height=60
 vel=5
-isjump=False
-jumpcount=10
+isJump=False
+jumpCount=10
 clock=pygame.time.Clock()
 
 def redrawGameWindow():
     global walkCount
     
-    win.blit(bg, (0,0))  #background at 0,0
+    screen.blit(bg, (0,0))  #background at 0,0
     if walkCount + 1 >= 27:
         walkCount = 0
         
     if left:  
-        win.blit(walkLeft[walkCount//3], (x,y))
+        screen.blit(walkLeft[walkCount//3], (x,y))
         walkCount += 1                          
     elif right:
-        win.blit(walkRight[walkCount//3], (x,y))
+        screen.blit(walkRight[walkCount//3], (x,y))
         walkCount += 1
     else:
-        win.blit(char, (x, y))
+        screen.blit(char, (x, y))
         walkCount = 0
         
     pygame.display.update() 

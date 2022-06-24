@@ -1,14 +1,17 @@
-Game 1:
-In this game, we need to use:
-- arrow keys to move the square
-- W, A, S, D to move the circle
+- use the arrow keys to move the character left and right
+- use the space button to make the character jump
+- the coins serve as the score. the more coins you get,the higher your score will be.
 
-Game 2:
-In this game, we need to use:
-- arrow keys to move the character
-- W, A, S, D to move the inscribed square 
-NOTE: If the character collides with the 
-inscribed square:
-the inscribed square will get larger
+Level 1: 
+avoid the spikes
+get the coins
+get to the treasure chest
+you have 30 seconds to reach the treasure chest
+if 30 seconds, the game will end and you will return to the menu
 
-Are you ready to play??
+Level 2: 
+avoid the spikes
+get the coins
+get to the treasure chest
+you have 20 seconds to reach the treasure chest
+if 20 seconds, the game will end and you will return to the menu
